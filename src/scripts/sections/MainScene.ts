@@ -3,7 +3,6 @@ import { PerspectiveCamera } from '../core/Camera'
 import { RawShaderMaterial } from '../core/ExtendedMaterials'
 import { shader } from '../shader/shader'
 import { Light } from './Light'
-import { isTouch } from '../utils/media'
 
 export class MainScene {
   readonly scene = new THREE.Scene()
