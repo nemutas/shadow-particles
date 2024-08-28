@@ -62,8 +62,4 @@ export class Composit {
   get texture() {
     return this.renderTarget.texture
   }
-
-  private get uniforms() {
-    return (this.scene.getObjectByName('composit') as THREE.Mesh<THREE.BufferGeometry, RawShaderMaterial>).material.uniforms
-  }
 }
