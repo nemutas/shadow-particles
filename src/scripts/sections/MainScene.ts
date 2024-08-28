@@ -77,6 +77,7 @@ export class MainScene {
     const mat = new RawShaderMaterial({
       uniforms: {
         positionMap: { value: null },
+        isDpr2: { value: 2 <= this.renderer.getPixelRatio() },
       },
       vertexShader: shader.point.vs,
       fragmentShader: shader.point.fs,
