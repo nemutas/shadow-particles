@@ -23,6 +23,7 @@ export class Canvas extends Three {
 
     window.addEventListener('resize', this.resize.bind(this))
     this.renderer.setAnimationLoop(this.anime.bind(this))
+    // this.intervalAnimation(this.anime.bind(this), 120)
   }
 
   private setGui() {

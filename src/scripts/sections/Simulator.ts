@@ -21,7 +21,7 @@ export class Simulator {
       new THREE.WebGLRenderTarget(amount, amount, {
         minFilter: THREE.NearestFilter,
         magFilter: THREE.NearestFilter,
-        type: THREE.FloatType,
+        type: THREE.HalfFloatType,
       })
     this.renderTargets.push(create(), create())
   }
