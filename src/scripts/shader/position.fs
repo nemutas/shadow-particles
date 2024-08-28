@@ -38,7 +38,7 @@ void main() {
   } else {
     life -= 0.01;
     // pos += curl(pos * 0.7, time, 0.1 + (1.0 - life) * 0.1) * 0.03;
-    pos += curl(pos * 0.3, time, 0.1 + (1.0 - life) * 0.1) * 0.03;
+    pos += curl(pos * 0.35, time, 0.1 + (1.0 - life) * 0.1) * 0.03;
   }
 
   outColor = vec4(pos, life);
