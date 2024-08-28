@@ -50,8 +50,12 @@ export class Composit {
     this.scene.add(mesh)
   }
 
-  render() {
-    this.renderer.setRenderTarget(this.renderTarget)
+  render({ output }: { output: boolean } = { output: false }) {
+    if (output) {
+      this.renderer.setRenderTarget(null)
+    } else {
+      this.renderer.setRenderTarget(this.renderTarget)
+    }
     this.renderer.render(this.scene, this.camera)
   }
 

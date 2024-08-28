@@ -38,6 +38,11 @@ void main() {
   shadow = shadow * (1.0 - 0.5) + 0.5;
   outColor.rgb *= shadow;
 
+  //
+  vec3 white = vec3(0.87, 0.89, 0.97);
+  vec3 black = vec3(0.00, 0.01, 0.02);
+  outColor = vec4(mix(black, white, outColor.r), outColor.a);
+
   // outColor = texture(diffuseMap, vUv);
   // outColor = vec4(vec3(1) * unpackRGBAToDepth(texture(depthMap, vUv)), 1.0);
   // outColor = vec4(vec3(1) * unpackRGBAToDepth(texture(lightDepthMap, vUv)), 1.0);

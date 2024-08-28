@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 
 export class RawShaderMaterial extends THREE.RawShaderMaterial {
-  constructor(parameters: THREE.ShaderMaterialParameters) {
+  constructor(public parameters: THREE.ShaderMaterialParameters) {
     super(parameters)
     this.glslVersion = this.glslVersion ?? '300 es'
     this.preprocess()

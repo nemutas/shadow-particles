@@ -77,7 +77,7 @@ export class MainScene {
     const mat = new RawShaderMaterial({
       uniforms: {
         positionMap: { value: null },
-        isDpr2: { value: 2 <= this.renderer.getPixelRatio() },
+        size: { value: 50.0 * this.renderer.getPixelRatio() * this.renderer.getPixelRatio() },
       },
       vertexShader: shader.point.vs,
       fragmentShader: shader.point.fs,
@@ -88,10 +88,7 @@ export class MainScene {
 
     // set depth material
     mesh.userData.depthMaterial = new RawShaderMaterial({
-      uniforms: {
-        positionMap: { value: null },
-      },
-      vertexShader: shader.point.vs,
+      ...mat.parameters,
       fragmentShader: shader.point.depthFs,
     })
   }
@@ -111,8 +108,7 @@ export class MainScene {
 
     // set depth material
     mesh.userData.depthMaterial = new RawShaderMaterial({
-      uniforms: {},
-      vertexShader: shader.ground.vs,
+      ...mat.parameters,
       fragmentShader: shader.ground.depthFs,
     })
   }
