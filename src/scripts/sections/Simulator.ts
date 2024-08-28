@@ -32,6 +32,7 @@ export class Simulator {
       uniforms: {
         positionMap: { value: null },
         time: { value: 0 },
+        deltaTime: { value: 0 },
         run: { value: true },
       },
       vertexShader: shader.simulator.vs,
@@ -45,6 +46,7 @@ export class Simulator {
   render(dt: number) {
     this.uniforms.positionMap.value = this.texture
     this.uniforms.time.value += dt
+    this.uniforms.deltaTime.value = dt
 
     this.renderer.setRenderTarget(this.renderTargets[1])
     this.renderer.render(this.scene, this.camera)

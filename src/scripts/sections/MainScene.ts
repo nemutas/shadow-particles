@@ -89,6 +89,10 @@ export class MainScene {
     // set depth material
     mesh.userData.depthMaterial = new RawShaderMaterial({
       ...mat.parameters,
+      uniforms: {
+        positionMap: { value: null },
+        size: { value: 50.0 },
+      },
       fragmentShader: shader.point.depthFs,
     })
   }
