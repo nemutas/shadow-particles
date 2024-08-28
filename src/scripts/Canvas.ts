@@ -1,18 +1,17 @@
 import { Three } from './core/Three'
 import { pane } from './Gui'
-import { AfterImage } from './sections/AfterImage'
 import { Composit } from './sections/Composit'
 import { Output } from './sections/Output'
 import { MainScene } from './sections/MainScene'
 import { Simulator } from './sections/Simulator'
+import { isTouch } from './utils/media'
 
 export class Canvas extends Three {
-  private readonly amount = 512
+  private readonly amount = isTouch ? 256 : 512
 
   private readonly simulator: Simulator
   private readonly mainScene: MainScene
   private readonly composit: Composit
-  private readonly afterImage: AfterImage
   private readonly output: Output
 
   constructor(canvas: HTMLCanvasElement) {
@@ -21,8 +20,7 @@ export class Canvas extends Three {
     this.simulator = new Simulator(this.renderer, this.amount)
     this.mainScene = new MainScene(this.renderer, this.amount)
     this.composit = new Composit(this.renderer, this.mainScene)
-    this.afterImage = new AfterImage(this.renderer, this.composit.texture)
-    this.output = new Output(this.renderer, this.afterImage.texture)
+    this.output = new Output(this.renderer, this.composit.texture)
 
     this.setGui()
 
@@ -48,8 +46,7 @@ export class Canvas extends Three {
     this.simulator.render(dt)
     this.mainScene.render(this.simulator.texture)
     this.composit.render()
-    this.afterImage.render()
-    this.output.render(this.afterImage.texture)
+    this.output.render()
   }
 
   private resize() {

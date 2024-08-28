@@ -20,8 +20,8 @@ export abstract class Three {
   private createRenderer(canvas: HTMLCanvasElement) {
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true })
     renderer.setSize(window.innerWidth, window.innerHeight)
-    renderer.setPixelRatio(window.devicePixelRatio)
-    // renderer.setPixelRatio(2)
+    // renderer.setPixelRatio(window.devicePixelRatio)
+    renderer.setPixelRatio(1)
     // renderer.shadowMap.enabled = true
     return renderer
   }

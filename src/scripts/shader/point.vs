@@ -6,6 +6,7 @@ in vec2 uv;
 uniform mat4 modelMatrix;
 uniform mat4 viewMatrix;
 uniform mat4 projectionMatrix;
+
 uniform sampler2D positionMap;
 
 out float vDepth;
