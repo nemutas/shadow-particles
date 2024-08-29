@@ -94,7 +94,7 @@ export class MainScene {
       ...mat.parameters,
       uniforms: {
         positionMap: { value: null },
-        size: { value: 50.0 },
+        size: { value: 50.0 * 1.3 }, // 少しだけ影を大きく見せる（小さすぎると、影が切れて綺麗に見えないので）
       },
       fragmentShader: shader.point.depthFs,
     })

@@ -39,7 +39,7 @@ export class Canvas extends Three {
     {
       const btn = pane.addButton({ title: 'debug view' }).on('click', () => {
         this.composit.toggleDebug()
-        btn.title = btn.title === 'debug view' ? 'normal view' : 'debug view'
+        btn.title = btn.title === 'debug view' ? 'composit view' : 'debug view'
       })
     }
   }
