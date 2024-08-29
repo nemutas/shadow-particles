@@ -24,23 +24,26 @@ export class MainScene {
   }
 
   private createCamera() {
-    const camera = new PerspectiveCamera(this.renderer, { near: 0.1, far: 20 })
+    const camera = new PerspectiveCamera(this.renderer, { near: 1, far: 20 })
     camera.lookAt(this.scene.position)
     camera.controls.enablePan = false
     camera.controls.maxPolarAngle = Math.PI / 2
+    camera.controls.minDistance = 5
     camera.controls.maxDistance = 10
     camera.controls.enableDamping = true
     return camera
   }
 
   private createLight() {
-    const light = new Light(this.renderer, [4096, 4096])
-    const size = 15
+    const resolution = 2048
+    const light = new Light(this.renderer, [resolution, resolution])
+    const size = 5
     light.camera = new THREE.OrthographicCamera(-size, size, size, -size, 1, 30)
     light.camera.position.set(3, 5, 0)
     light.camera.position.set(1, 5, -1)
     light.camera.lookAt(this.scene.position)
     this.scene.add(light.camera)
+    // this.scene.add(new THREE.CameraHelper(light.camera))
     return light
   }
 

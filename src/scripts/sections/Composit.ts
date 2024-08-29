@@ -41,6 +41,7 @@ export class Composit {
             viewMatrix: mainScene.light.camera.matrixWorldInverse,
           },
         },
+        debug: { value: false },
       },
       vertexShader: shader.composit.vs,
       fragmentShader: shader.composit.fs,
@@ -65,5 +66,13 @@ export class Composit {
 
   get texture() {
     return this.renderTarget.texture
+  }
+
+  private get uniforms() {
+    return (this.scene.getObjectByName('composit') as THREE.Mesh<THREE.BufferGeometry, RawShaderMaterial>).material.uniforms
+  }
+
+  toggleDebug() {
+    this.uniforms.debug.value = !this.uniforms.debug.value
   }
 }

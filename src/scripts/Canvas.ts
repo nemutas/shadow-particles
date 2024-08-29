@@ -30,10 +30,18 @@ export class Canvas extends Three {
     pane.title = '(^_^)/'
     pane.addFpsBlade()
 
-    const btn = pane.addButton({ title: 'stop' }).on('click', () => {
-      this.simulator.toggleRun()
-      btn.title = btn.title === 'stop' ? 'restart' : 'stop'
-    })
+    {
+      const btn = pane.addButton({ title: 'stop' }).on('click', () => {
+        this.simulator.toggleRun()
+        btn.title = btn.title === 'stop' ? 'restart' : 'stop'
+      })
+    }
+    {
+      const btn = pane.addButton({ title: 'debug view' }).on('click', () => {
+        this.composit.toggleDebug()
+        btn.title = btn.title === 'debug view' ? 'normal view' : 'debug view'
+      })
+    }
   }
 
   private anime() {
