@@ -19,6 +19,7 @@ in vec2 vUv;
 out vec4 outColor;
 
 #include '../shader/module/packing.glsl'
+#include '../shader/module/hash.glsl'
 
 void main() {
   vec2 uv = vUv;
@@ -47,13 +48,18 @@ void main() {
   vec4 wp = inverse(sceneTransform.viewMatrix) * inverse(sceneTransform.projectionMatrix) * vec4(ndcPos, 1.0);
   vec3 worldPos = wp.xyz / wp.w;
 
-  vec4 lp = lightTransform.projectionMatrix * lightTransform.viewMatrix * vec4(worldPos, 1.0);
-  vec3 shadowCoord = lp.xyz / lp.w * 0.5 + 0.5;
-  float lightDepth = unpackRGBAToDepth(texture(lightDepthMap, shadowCoord.xy));
-  float bias = 0.02;
+  float i, shadow;
+  for (; i < 5.0; i++) {
+    vec3 wp = worldPos + (hash(worldPos + i) * 2.0 - 1.0) * 0.003 * i;
 
-  // float shadow = step(shadowCoord.z - bias, lightDepth);
-  float shadow = smoothstep(bias, 0.0, shadowCoord.z - lightDepth);
+    vec4 lp = lightTransform.projectionMatrix * lightTransform.viewMatrix * vec4(wp, 1.0);
+    vec3 shadowCoord = lp.xyz / lp.w * 0.5 + 0.5;
+    float lightDepth = unpackRGBAToDepth(texture(lightDepthMap, shadowCoord.xy));
+    float bias = 0.02;
+
+    shadow += smoothstep(bias, 0.0, shadowCoord.z - lightDepth);
+  }
+  shadow /= i;
   shadow = shadow * (1.0 - 0.5) + 0.5;
   float selfShadow = dot(normal, -lightDirection) * 0.5 + 0.5;
   shadow += selfShadow * (shadow - 0.5) * 0.3;
