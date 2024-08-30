@@ -32,14 +32,14 @@ void main() {
 
   if (life < 0.0) {
     vec3 h = hash(vec3(time, vUv));
-    // life = h.x * (1.0 - 0.2) + 0.2;
     life = h.x;
     float radius = (h.y * (0.5 - 0.4) + 0.4);
     pos = normalize(hash(vec3(vUv, time)) * 2.0 - 1.0) * radius;
   } else {
     // life -= 0.01;
-    life -= deltaTime * 0.7;
-    pos += curl(pos * 0.35, time, 0.1 + (1.0 - life) * 0.1) * 0.03;
+    life -= deltaTime * 0.8;
+    // pos += curl(pos * 0.35, time, 0.1 + (1.0 - life) * 0.1) * 0.03;
+    pos += curl(pos * 0.35, time * 0.5, 0.1 + (1.0 - life) * 0.1) * 0.03;
   }
 
   outColor = vec4(pos, life);

@@ -26,7 +26,7 @@ export class Composit {
     const geo = new THREE.PlaneGeometry(2, 2)
     const mat = new RawShaderMaterial({
       uniforms: {
-        diffuseMap: { value: mainScene.texture('diffuse') },
+        normalDiffuseMap: { value: mainScene.texture('normal-diffuse') },
         depthMap: { value: mainScene.texture('depth') },
         lightDepthMap: { value: mainScene.light.depthTexture },
         sceneTransform: {
@@ -41,6 +41,7 @@ export class Composit {
             viewMatrix: mainScene.light.camera.matrixWorldInverse,
           },
         },
+        lightDirection: { value: mainScene.light.camera.getWorldDirection(new THREE.Vector3()) },
         debug: { value: false },
       },
       vertexShader: shader.composit.vs,

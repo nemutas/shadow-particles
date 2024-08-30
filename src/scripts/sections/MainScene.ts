@@ -35,11 +35,11 @@ export class MainScene {
   }
 
   private createLight() {
-    const resolution = 2048
+    const resolution = 1024
     const light = new Light(this.renderer, [resolution, resolution])
     const size = 5
     light.camera = new THREE.OrthographicCamera(-size, size, size, -size, 1, 30)
-    light.camera.position.set(3, 5, 0)
+    // light.camera.position.set(3, 5, 0)
     light.camera.position.set(1, 5, -1)
     light.camera.lookAt(this.scene.position)
     this.scene.add(light.camera)
@@ -56,7 +56,7 @@ export class MainScene {
       minFilter: THREE.NearestFilter,
       magFilter: THREE.NearestFilter,
     })
-    renderTarget.textures[0].name = 'diffuse'
+    renderTarget.textures[0].name = 'normal-diffuse'
     renderTarget.textures[1].name = 'depth'
     return renderTarget
   }
@@ -144,7 +144,7 @@ export class MainScene {
     return this.mesh(name).material.uniforms
   }
 
-  texture(name: 'diffuse' | 'depth') {
+  texture(name: 'normal-diffuse' | 'depth') {
     return this.multipleRenderTarget.textures.find((t) => t.name === name)!
   }
 }
