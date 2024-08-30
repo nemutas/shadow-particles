@@ -35,7 +35,7 @@ export class MainScene {
   }
 
   private createLight() {
-    const resolution = 1024
+    const resolution = 1024 * 2
     const light = new Light(this.renderer, [resolution, resolution])
     const size = 5
     light.camera = new THREE.OrthographicCamera(-size, size, size, -size, 1, 30)
