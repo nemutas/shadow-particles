@@ -51,7 +51,7 @@ void main() {
   float i, shadow;
   vec3 wph = worldPos;
   for (; i < 10.0; i++) {
-    wph = worldPos + (hash(wph.yxz) * 2.0 - 1.0) * 0.005;
+    wph = worldPos + (hash(wph.yzx) * 2.0 - 1.0) * 0.005;
 
     vec4 lp = lightTransform.projectionMatrix * lightTransform.viewMatrix * vec4(wph, 1.0);
     vec3 shadowCoord = lp.xyz / lp.w * 0.5 + 0.5;
